@@ -163,10 +163,10 @@ class AboutMethods(Koan):
             #This may not be possible...
             password = rover.__password()
         except Exception as ex:
-            self.assertEqual(__, ex.__class__.__name__)
+            self.assertEqual('AttributeError', ex.__class__.__name__)
 
         # But this still is!
-        self.assertEqual(__, rover._Dog__password())
+        self.assertEqual('password', rover._Dog__password())
 
         # Name mangling exists to avoid name clash issues when subclassing.
         # It is not for providing effective access protection

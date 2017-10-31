@@ -147,13 +147,13 @@ class AboutMethods(Koan):
 
     def test_calling_methods_in_other_objects(self):
         rover = self.Dog()
-        self.assertEqual(__, rover.name())
+        self.assertEqual("Fido", rover.name())
 
     def test_private_access_is_implied_but_not_enforced(self):
         rover = self.Dog()
 
         # This is a little rude, but legal
-        self.assertEqual(__, rover._tail())
+        self.assertEqual("wagging", rover._tail())
 
     def test_double_underscore_attribute_prefixes_cause_name_mangling(self):
         """Attributes names that start with a double underscore get

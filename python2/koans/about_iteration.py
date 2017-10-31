@@ -14,20 +14,20 @@ class AboutIteration(Koan):
         for num in it:
             fib += num
 
-        self.assertEqual(__, fib)
+        self.assertEqual(15, fib)
 
     def test_iterating_with_next(self):
         stages = iter(['alpha', 'beta', 'gamma'])
 
         try:
-            self.assertEqual(__, next(stages))
-            next(stages)
-            self.assertEqual(__, next(stages))
+            self.assertEqual('alpha', next(stages))
+            next(stages) # and call more next so go to 2
+            self.assertEqual('gamma', next(stages))
             next(stages)
         except StopIteration as ex:
             err_msg = 'Ran out of iterations'
 
-        self.assertMatch(__, err_msg)
+        self.assertMatch('Ran out of iterations', err_msg)
 
     # ------------------------------------------------------------------
 
@@ -37,8 +37,8 @@ class AboutIteration(Koan):
     def test_map_transforms_elements_of_a_list(self):
         seq = [1, 2, 3]
 
-        mapped_seq = map(self.add_ten, seq)
-        self.assertEqual(__, mapped_seq)
+        mapped_seq = map(self.add_ten, seq) #A savage Map appears!
+        self.assertEqual([11,12,13], mapped_seq)
 
     def test_filter_selects_certain_items_from_a_list(self):
         def is_even(item):

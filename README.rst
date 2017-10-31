@@ -1,3 +1,9 @@
+These are MY solutions to the python Koans, I must forked and then work on it
+but i thouht it was going to be faster, as is not...
+
+In the code you have the solutions for python2 
+
+
 ============
 Python Koans
 ============

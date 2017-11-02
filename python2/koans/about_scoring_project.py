@@ -34,32 +34,42 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 
-def triplets(dices)
 def score(dices):
     # You need to write this method
-    if dices: 
-        if dices.count(1) == 3:
-            return 1000
-        if dices.count(1) == 2 and dices.count(5) == 2 :
-            return 300
-         
-        if dices.count(2) == 3:
-            return 200
-        if dices.count(3) == 3:
-            return 300
-        if dices.count(4) == 3:
-            return 400
-        if dices.count(5) == 3:
-            return 500
+    result = 0
+    if dices.count(1) != 0:
+        if dices.count(1) >= 3:
+            rest_of_ones = dices.count(1) - 3 
+            result = (result + 1000) + (rest_of_ones * 100)
+            while dices.count(1)>0:
+                dices.remove(1)
+             
+        else:
+            result = result + dices.count(1) * 100
+            while dices.count(1)>0:
+                dices.remove(1)
+        
+    if dices.count(5) !=0:
+        if dices.count(5) >=3:
+            rest_of_fives = dices.count(5) - 3
+            result = result + 500 + rest_of_fives * 50 
+            while dices.count(5)>0:
+                dices.remove(5)
+        else:
+            result = result + dices.count(5) * 50
+            while dices.count(5)>0:
+                dices.remove(5)
 
-        if dices[0] == 5:
-            return 50
-        if dices[0] == 1:
-            return 100
-        return 0
+    
+    for number  in dices:
+       if dices.count(number) >= 3:
+           result = result + number * 100
+       while dices.count(number)>0:
+           dices.remove(number)
 
-    return 0
 
+    return result              
+ 
 class AboutScoringProject(Koan):
 
     def test_score_of_an_empty_list_is_zero(self):
@@ -85,9 +95,9 @@ class AboutScoringProject(Koan):
         self.assertEqual(300, score([3, 3, 3]))
         self.assertEqual(400, score([4, 4, 4]))
         self.assertEqual(500, score([5, 5, 5]))
-        #self.assertEqual(600, score([6, 6, 6]))
+        self.assertEqual(600, score([6, 6, 6]))
 
-    def _test_score_of_mixed_is_sum(self):
+    def test_score_of_mixed_is_sum(self):
         self.assertEqual(250, score([2, 5, 2, 2, 3]))
         self.assertEqual(550, score([5, 5, 5, 5]))
         self.assertEqual(1150, score([1, 1, 1, 5, 1]))
